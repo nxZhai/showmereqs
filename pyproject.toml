@@ -1,6 +1,6 @@
 [project]
 name = "showmereqs"
-version = "0.1.1"
+version = "0.1.2"
 description = "A lightweight tool to generate requirements.txt by analyzing import statements"
 requires-python = ">=3.8"
 authors = [
@@ -23,7 +23,8 @@ classifiers = [
 ]
 
 dependencies = [
-    "requests",
+    "requests>=2.31.0",
+    "click>=8.1.7",
 ]
 
 [build-system]

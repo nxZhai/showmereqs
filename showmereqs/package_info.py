@@ -3,7 +3,7 @@ from typing import Optional
 
 import requests
 
-from showmereqs.utils import get_special_mapping
+from showmereqs.utils import get_mapping
 
 
 class PackageInfo:
@@ -15,7 +15,7 @@ class PackageInfo:
         self.import_name = import_name
         self.version: Optional[str] = self._get_local_version()
 
-        self.mapping_name: Optional[str] = self._get_package_name_from_special_mapping()
+        self.mapping_name: Optional[str] = self._get_package_name_from_mapping()
 
         self.package_name: Optional[str] = None
         if self.mapping_name is None:
@@ -29,6 +29,7 @@ class PackageInfo:
         return f"<PackageInfo> {{\nimport_name: {self.import_name}\nversion: {self.version}\npackage_name: {self.package_name}\n}}"
 
     def format_row(self):
+        """format the package info into a row"""
         return (
             self.version is not None,
             self.package_name is not None,
@@ -55,11 +56,9 @@ class PackageInfo:
         except importlib.metadata.PackageNotFoundError:
             return None
 
-    def _get_package_name_from_special_mapping(
-        self, special_mapping: dict[str, str] = None
-    ):
+    def _get_package_name_from_mapping(self, special_mapping: dict[str, str] = None):
         if special_mapping is None:
-            special_mapping = get_special_mapping()
+            special_mapping = get_mapping()
         if self.import_name in special_mapping:
             return special_mapping[self.import_name]
         return None

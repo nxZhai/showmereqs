@@ -1,5 +1,4 @@
 import ast
-import sys
 from pathlib import Path
 
 from .utils import get_builtin_modules, get_ignore_dirs
@@ -77,7 +76,3 @@ def get_third_party_imports(dir: str) -> set[str]:
     """
     all_imports, local_modules = traversal_directory(dir)
     return filter_imports(all_imports, local_modules)
-
-
-if __name__ == "__main__":
-    print(get_third_party_imports("D:/Desktop/showmereqs/tests/all_kinds_import"))

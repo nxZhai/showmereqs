@@ -11,7 +11,7 @@ import sys
 from pathlib import Path
 
 config_dir = Path(__file__).parent / "config"
-special_mapping_path = config_dir / "special_mapping"
+special_mapping_path = config_dir / "mapping"
 stdlib_path = config_dir / "stdlib"
 ignore_path = config_dir / "ignore.json"
 
@@ -20,7 +20,7 @@ stdlib_modules: set[str] = set()
 ignore_dirs: set[str] = set()
 
 
-def get_special_mapping():
+def get_mapping():
     global special_mapping
     if len(special_mapping) == 0:
         with open(special_mapping_path, "r") as f:
@@ -60,7 +60,7 @@ def get_ignore_dirs():
 
 
 if __name__ == "__main__":
-    special_mapping = get_special_mapping()
+    special_mapping = get_mapping()
     builtin_modules = get_builtin_modules()
 
     print(special_mapping)

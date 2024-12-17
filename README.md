@@ -6,8 +6,9 @@ A lightweight command-line tool that generates requirements.txt by analyzing imp
 
 -   Intelligent third-party import detection
 -   Automatic requirements.txt generation with precise versions
+-   Display missing packages in current environment
+-   Display import names that differ from PyPI package names for manual review
 -   Clean and intuitive CLI interface
--   Smart package resolution and analysis
 
 ## Installation
 
@@ -30,6 +31,22 @@ Or specify a project path:
 ```bash
 showmereqs path/to/your/project
 ```
+
+## Examples
+
+-   #### Normal Output
+
+![Normal Output](docs/images/normal_output.png)
+
+-   #### Special Cases Detection
+
+![Special Cases](docs/images/special_cases.png)
+
+The tool will:
+
+-   Mark packages not found in current environment
+-   Highlight import names that differ from their PyPI package names
+-   Generate a clean requirements.txt file or a detail one
 
 ## Why ShowMeReqs?
 
