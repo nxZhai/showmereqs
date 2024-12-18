@@ -21,7 +21,7 @@ logo = (
 )
 
 
-@click.command()
+@click.command(context_settings={"help_option_names": ["-h", "--help"]})
 @click.argument(
     "path",
     type=click.Path(exists=True, file_okay=True, dir_okay=True, resolve_path=True),
@@ -43,13 +43,6 @@ logo = (
     is_flag=True,
     default=False,
     help="detailed information in requirements.txt",
-)
-@click.option(
-    "--verbose",
-    "-v",
-    is_flag=True,
-    default=False,
-    help="whether to show detailed information",
 )
 def main(**kwargs) -> None:
     """Analyze Python project dependencies and generate requirements.txt"""
