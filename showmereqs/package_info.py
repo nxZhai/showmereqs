@@ -47,6 +47,8 @@ class PackageInfo:
         return f"{version_txt}"
 
     def format_import_info(self):
+        if self.package_name == self.import_name:
+            return ""
         return f"# {self.import_name}"
 
     def _get_local_version(self):

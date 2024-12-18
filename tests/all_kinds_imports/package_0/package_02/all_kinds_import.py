@@ -1,52 +1,64 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+# type: ignore
+# ruff: noqa
+# mypy: ignore-errors
+# pylint: skip-file
+"""
+This is a test file that demonstrates various Python import patterns.
+It is used for testing the import analysis functionality of showmereqs.
+This file intentionally includes all kinds of import statements and should not be analyzed for actual dependencies.
 
-# 1. 标准导入
+DO NOT EDIT - This file is part of the test suite.
+"""
+
+# 1. built-in module
 import datetime
 
-# 2. 多重导入
+# 2. multiple imports
 import json
 import os
 
-# 4. 带点号的导入
+# 3. alias imports
+import numpy as np
+import pandas as pd
+
+# 4. dot imports
 import os.path
 import sys
 import xml.dom.minidom
 
-# 5. from 导入
+# 5. from imports
 from math import pi
 
-# 6. from 多重导入
+# 6. from multiple imports
 from os import makedirs, path, remove
 
-# 8. from 带点号导入
+# 7. from dot imports
 from os.path import exists, join
 from time import sleep
 from xml.dom.minidom import parse
 
-# 3. 带别名的导入
-import numpy as np
-import pandas as pd
 
-# 7. from 带别名导入
+# 8. from alias imports
 from tensorflow import keras as k
 from torch.nn import functional as F
 
-# 9. 相对导入
+# 9. relative imports
 from ... import module_0
 from ...module_1 import functionB
 from .. import module_01
 from ..package_01 import module_010
 from .module_020 import functionA
 
-# 10. 条件导入
+# 10. conditional imports
 try:
     import scipy
 except ImportError:
     import numpy
 
 
-# 11. 函数内导入
+# 11. within function imports
 def some_function():
     import requests
     from PIL import Image
@@ -54,7 +66,7 @@ def some_function():
     return requests, Image
 
 
-# 12. 类内导入
+# 12. within class imports
 class SomeClass:
     import threading
 
@@ -69,21 +81,21 @@ class SomeClass:
         return defaultdict(list)
 
 
-# 13. if 条件下的导入
+# 13. if conditional imports
 if sys.version_info >= (3, 8):
     from typing import TypedDict
 else:
     from typing_extensions import TypedDict
 
-# 14. 带 * 的导入
+# 14. star imports
 from math import *
 
-# 15. 复杂的 from import
+# 15. complex from imports
 from torch.nn.functional import dropout, gelu, relu
 from torch.nn.functional import softmax as soft
 
 
-# 16. 动态导入 unable to analyze
+# 16. dynamic imports     unable to analyze
 def dynamic_import():
     module_name = "yaml"
     # 使用 __import__
@@ -97,7 +109,7 @@ def dynamic_import():
     return yaml1, yaml2
 
 
-# 17. 嵌套的条件导入
+# 17. nested conditional imports
 try:
     import torch
 
@@ -112,7 +124,7 @@ except ImportError:
         import theano
 
 
-# 18. with 语句中的导入
+# 18. with statement imports
 def with_import():
     with open("test.txt") as f:
         import csv
@@ -120,12 +132,12 @@ def with_import():
         return csv
 
 
-# 19. 在列表/字典推导式中的导入
+# 19. imports in list/dict comprehensions   unable to analyze
 def comprehension_import():
     return [__import__(x) for x in ["os", "sys", "time"]]
 
 
-# 20. 异步上下文中的导入
+# 20. imports in async context
 async def async_function():
     import asyncio
 
@@ -134,8 +146,11 @@ async def async_function():
     return aiohttp, asyncio
 
 
+# 21. unknown import
+import guidoooo
+
 if __name__ == "__main__":
-    # 实际使用一些导入的模块，防止被优化掉
+    # use some imports to prevent them from being optimized away
     print(f"Python version: {sys.version}")
     print(f"Current directory: {os.getcwd()}")
     print(f"Pi value: {pi}")

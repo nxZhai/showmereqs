@@ -58,7 +58,7 @@ Additionally, once ShowMeReqs generates the initial requirements.txt, you can ea
 
 This project is licensed under the Apache License, Version 2.0 - see the [LICENSE](LICENSE) file for details.
 
-ShowMeReqs uses package mapping and stdlib data from [pipreqs](https://github.com/bndr/pipreqs/tree/master) under the Apache 2.0 license. As pipreqs development has slowed, ShowMeReqs aims to provide an actively maintained alternative for the Python community.
+ShowMeReqs uses package mapping and stdlib data from [pipreqs](https://github.com/bndr/pipreqs/) under the Apache 2.0 license. As pipreqs development has slowed, ShowMeReqs aims to provide an actively maintained alternative for the Python community.
 
 ## Roadmap
 
@@ -66,6 +66,7 @@ Future releases will include:
 
 -   Additional CLI options for customization
 -   Support for excluding specific packages or directories
+-   Analyze dependencies between missing packages to determine their versions
 -   Version range specifications
 -   Integration with other package management tools
 

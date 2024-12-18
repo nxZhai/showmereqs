@@ -1,4 +1,5 @@
 # Python
+.pytest_cache/
 __pycache__/
 *.py[cod]
 *$py.class
@@ -19,6 +20,7 @@ wheels/
 *.egg-info/
 .installed.cfg
 *.egg
+build_upload.py
 
 # Virtual Environment
 .env
@@ -43,4 +45,4 @@ venv.bak/
 *.log
 .coverage
 htmlcov/
-                            
+

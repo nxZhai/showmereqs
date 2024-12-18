@@ -14,18 +14,19 @@ def traversal_directory(directory: str) -> tuple[set[str], set[str]]:
         imports = get_imports_from_file(file)
         all_imports.update(imports)
 
-        add_local_modules(local_modules, file)
+        update_local_modules(local_modules, file)
 
     return all_imports, local_modules
 
 
 def get_py_files(directory: str):
     """yield .py files in a directory"""
+    ignore_dirs = get_ignore_dirs()
     for file in Path(directory).iterdir():
         if file.is_file() and file.suffix == ".py":
             yield file
         elif file.is_dir():
-            if file.name in get_ignore_dirs():
+            if file.name in ignore_dirs:
                 continue
             yield from get_py_files(file)
 
@@ -55,7 +56,7 @@ def get_imports_from_file(file_path: Path) -> set[str]:
     return imports
 
 
-def add_local_modules(local_modules: set[str], file: Path):
+def update_local_modules(local_modules: set[str], file: Path):
     """add local modules to set"""
     for p in file.parents:
         local_modules.add(p.name)

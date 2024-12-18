@@ -2,7 +2,7 @@
 This module contains utility functions for ShowMeReqs.
 
 Some package mapping and stdlib data are derived from pipreqs:
-https://github.com/bndr/pipreqs/tree/master
+https://github.com/bndr/pipreqs/
 Licensed under Apache License, Version 2.0
 """
 

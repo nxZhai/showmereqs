@@ -1,4 +1,3 @@
-import os
 import subprocess
 import sys
 
@@ -11,7 +10,7 @@ upload_cmd = "python -m twine upload dist/*"
 
 def build_and_upload():
     try:
-        # 1. 清理旧的构建文件
+        # 1. clean old build files
         if sys.platform == "win32":
             clean_cmd = clean_cmd_win
         else:
@@ -19,11 +18,11 @@ def build_and_upload():
 
         subprocess.run(clean_cmd, shell=True, check=True)
 
-        # 2. 构建包
+        # 2. build package
         print("开始构建...")
         subprocess.run(build_cmd, check=True)
 
-        # 3. 上传到 PyPI
+        # 3. upload to PyPI
         print("开始上传...")
         subprocess.run(upload_cmd, check=True)
 

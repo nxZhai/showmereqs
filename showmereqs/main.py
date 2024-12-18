@@ -7,14 +7,18 @@ from showmereqs.analyze import get_third_party_imports
 from showmereqs.generate import generate_reqs
 from showmereqs.package_info import PackageInfo
 
-logo = """\033[92m
+logo = (
+    "\033[92m"
+    + r"""
  ____  _                    __  __       ____                
 / ___|| |__   _____  __  _ |  \/  | ___ |  _ \ ___  __ _ ___ 
 \___ \| '_ \ / _ \ \/  \/ || |\/| |/ _ \| |_) / _ \/ _` / __|
- ___) | | | | (_) \  /\  / | |  | |  __/|  _ <  __/ (_| \__ \\
+ ___) | | | | (_) \  /\  / | |  | |  __/|  _ <  __/ (_| \__ \
 |____/|_| |_|\___/ \/  \/  |_|  |_|\___||_| \_\___|\__, |___/
                                                       \_|     
-\033[0m"""
+"""
+    + "\033[0m"
+)
 
 
 @click.command()
@@ -23,7 +27,9 @@ logo = """\033[92m
     type=click.Path(exists=True, file_okay=True, dir_okay=True, resolve_path=True),
     default=".",
 )
-@click.option("--outdir", "-o", default=".", help="path to output directory")
+@click.option(
+    "--outdir", "-o", help="path to output directory, default is current path"
+)
 @click.option(
     "--force",
     "-f",
@@ -48,6 +54,8 @@ logo = """\033[92m
 def main(**kwargs) -> None:
     """Analyze Python project dependencies and generate requirements.txt"""
     print(logo)
+    if kwargs.get("outdir", None) is None:
+        kwargs["outdir"] = kwargs["path"]
     check_outdir(kwargs)
 
     third_party_imports = get_third_party_imports(kwargs["path"])
@@ -56,14 +64,16 @@ def main(**kwargs) -> None:
     ]
     generate_reqs(third_party_package_infos, **kwargs)
 
-    print(f"\033[92mgenerate {kwargs['outdir']}/requirements.txt successfully\033[0m")
+    print(f"\033[92mgenerate {kwargs['outdir']}\\requirements.txt successfully\033[0m")
 
 
 def check_outdir(kwargs):
     if os.path.exists(kwargs["outdir"]):
-        if not kwargs["force"]:
+        if not kwargs["force"] and os.path.exists(
+            os.path.join(kwargs["outdir"], "requirements.txt")
+        ):
             print(
-                f"file {kwargs['outdir']}/requirements.txt already exists, use -f to force overwrite"
+                f"file {kwargs['outdir']}\\requirements.txt already exists, use -f to force overwrite"
             )
             sys.exit(1)
     else:
