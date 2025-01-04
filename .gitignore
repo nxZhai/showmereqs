@@ -21,6 +21,7 @@ wheels/
 .installed.cfg
 *.egg
 build_upload.py
+requirements.txt
 
 # Virtual Environment
 .env

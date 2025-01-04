@@ -26,10 +26,11 @@ dependencies = [
     "requests>=2.31.0",
     "click>=8.1.7",
 ]
-[project.optional-dependencies]
+[dependency-groups]
 dev = [
-    "pytest>=7.0.0",
+    "pytest>=8.3.4",
 ]
+
 [build-system]
 requires = ["setuptools>=61.0"]
 build-backend = "setuptools.build_meta"
@@ -40,6 +41,7 @@ showmereqs = "showmereqs:main"
 [tool.setuptools]
 packages = ["showmereqs"]
 package-data = {showmereqs = ["config/*"]}
+
 
 [project.urls]
 "Homepage" = "https://github.com/sunandriver/showmereqs"
