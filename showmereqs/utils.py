@@ -15,52 +15,41 @@ special_mapping_path = config_dir / "mapping"
 stdlib_path = config_dir / "stdlib"
 ignore_path = config_dir / "ignore.json"
 
-special_mapping: dict[str, str] = {}
-stdlib_modules: set[str] = set()
-ignore_dirs: set[str] = set()
+_special_mapping: dict[str, str] = {}
+_stdlib_modules: set[str] = set()
+_ignore_dirs: set[str] = set()
 
 
 def get_mapping():
-    global special_mapping
-    if len(special_mapping) == 0:
+    global _special_mapping
+    if len(_special_mapping) == 0:
         with open(special_mapping_path, "r") as f:
             for line in f.read().splitlines():
                 import_name, package_name = line.strip().split(":")
-                special_mapping[import_name] = package_name
+                _special_mapping[import_name] = package_name
 
-    return special_mapping
+    return _special_mapping
 
 
 def get_builtin_modules() -> set[str]:
     """get python builtin modules"""
-    global stdlib_modules
-    if len(stdlib_modules) != 0:
-        return stdlib_modules
+    global _stdlib_modules
+    if len(_stdlib_modules) == 0:
+        # method after Python 3.10+
+        if hasattr(sys, "stdlib_module_names"):
+            _stdlib_modules = set(sys.stdlib_module_names)
 
-    # method after Python 3.10+
-    if hasattr(sys, "stdlib_module_names"):
-        return set(sys.stdlib_module_names)
-
-    # method before Python 3.10
-    else:
-        with open(stdlib_path, "r") as f:
-            stdlib_modules = set(f.read().splitlines())
-    return stdlib_modules
+        # method before Python 3.10
+        else:
+            with open(stdlib_path, "r") as f:
+                _stdlib_modules = set(f.read().splitlines())
+    return _stdlib_modules
 
 
 def get_ignore_dirs():
-    global ignore_dirs
-    if len(ignore_dirs) != 0:
-        return ignore_dirs
+    global _ignore_dirs
+    if len(_ignore_dirs) == 0:
+        with open(ignore_path, "r") as f:
+            _ignore_dirs = set(json.load(f)["ignore_dirs"])
 
-    with open(ignore_path, "r") as f:
-        ignore_dirs = set(json.load(f)["ignore_dirs"])
-
-    return ignore_dirs
-
-
-if __name__ == "__main__":
-    special_mapping = get_mapping()
-    builtin_modules = get_builtin_modules()
-
-    print(special_mapping)
+    return _ignore_dirs
