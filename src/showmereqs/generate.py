@@ -4,6 +4,28 @@ from pathlib import Path
 from showmereqs.package_info import PackageInfo
 
 
+def get_toml_path(analysis_dir: str):
+    """
+    check the toml file in the analysis_dir, if not exist, create it,
+    return None if user cancel
+    """
+    toml_path = Path(analysis_dir) / "pyproject.toml"
+    if not toml_path.exists():
+        print(f"no toml file found in {analysis_dir}, create it? (y/n)")
+        if input() == "y":
+            toml_path.touch()
+            return toml_path
+        else:
+            return None
+    else:
+        return toml_path
+
+
+def update_toml(package_infos: list[PackageInfo], toml_path: str):
+    """update the toml file with the package infos"""
+    ...
+
+
 def get_block_txt(
     header: str,
     max_row_len: int,
