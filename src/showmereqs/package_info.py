@@ -1,29 +1,31 @@
 import importlib.metadata
+from dataclasses import dataclass
 from typing import Optional
 
 import requests
 
 from showmereqs.utils import get_mapping
 
+pypi_api = "https://pypi.org/pypi"
 
+
+@dataclass
 class PackageInfo:
     """a class to get package info, including package name, version, etc."""
 
-    json_api = "https://pypi.org/pypi"
+    import_name: str
+    version: Optional[str] = None
+    package_name: Optional[str] = None
 
-    def __init__(self, import_name: str):
-        self.import_name = import_name
-        self.version: Optional[str] = self._get_local_version()
+    def __post_init__(self):
+        self.version = self._get_local_version()
 
-        self.mapping_name: Optional[str] = self._get_package_name_from_mapping()
+        self.package_name = self._get_package_name_from_mapping()
 
-        self.package_name: Optional[str] = None
-        if self.mapping_name is None:
+        if self.package_name is None:
             json_info = self._get_pypi_json(self.import_name)
             if json_info is not None:
                 self.package_name = json_info["info"]["name"]
-        else:
-            self.package_name = self.mapping_name
 
     def __str__(self):
         return f"<PackageInfo> {{\nimport_name: {self.import_name}\nversion: {self.version}\npackage_name: {self.package_name}\n}}"
@@ -66,7 +68,7 @@ class PackageInfo:
         return None
 
     def _get_pypi_json(self, package_name: str):
-        api = f"{self.json_api}/{package_name}/json"
+        api = f"{pypi_api}/{package_name}/json"
         try:
             response = requests.get(api, timeout=2)
             if response.status_code == 200:

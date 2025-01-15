@@ -1,6 +1,6 @@
 [project]
 name = "showmereqs"
-version = "0.1.4"
+version = "0.1.5"
 description = "A lightweight tool to generate requirements.txt by analyzing import statements"
 requires-python = ">=3.8"
 authors = [
@@ -19,6 +19,8 @@ classifiers = [
     "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
     "Topic :: Software Development :: Libraries :: Python Modules",
 ]
 
@@ -29,19 +31,16 @@ dependencies = [
 [dependency-groups]
 dev = [
     "pytest>=8.3.4",
+    "twine>=6.0.1",
 ]
-
-[build-system]
-requires = ["setuptools>=61.0"]
-build-backend = "setuptools.build_meta"
 
 [project.scripts]
 showmereqs = "showmereqs:main"
 
-[tool.setuptools]
-packages = ["showmereqs"]
-package-data = {showmereqs = ["config/*"]}
 
+[tool.hatch.build.targets.wheel]
+packages = ["src/showmereqs"]
+package-data = {showmereqs = ["config/*"]}
 
 [project.urls]
 "Homepage" = "https://github.com/sunandriver/showmereqs"
