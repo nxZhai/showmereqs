@@ -627,8 +627,13 @@ wheels = [
 
 [[package]]
 name = "showmereqs"
+<<<<<<< HEAD
 version = "0.1.5"
 source = { virtual = "." }
+=======
+version = "0.1.6"
+source = { editable = "." }
+>>>>>>> 25b8043 (bug fix)
 dependencies = [
     { name = "click" },
     { name = "requests" },
