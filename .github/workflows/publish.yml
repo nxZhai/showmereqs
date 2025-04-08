@@ -3,7 +3,7 @@ name: Build and Publish
 on:
     push:
         tags:
-            - "v*" # 当推送 v 开头的标签时触发
+            - 'v*' # 当推送 v 开头的标签时触发
 
 jobs:
     build-and-publish:
@@ -27,9 +27,9 @@ jobs:
             - name: Build package
               run: uv build
 
-            # - name: Run tests
-            #   run: uv run pytest
-            #   continue-on-error: false
+            - name: Run tests
+              run: uv run pytest
+              continue-on-error: false
 
             - name: Publish to PyPI
               env:

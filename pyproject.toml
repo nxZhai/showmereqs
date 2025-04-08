@@ -1,6 +1,6 @@
 [project]
 name = "showmereqs"
-version = "0.1.5"
+version = "0.2.5"
 description = "A lightweight tool to generate requirements.txt by analyzing import statements"
 requires-python = ">=3.8"
 authors = [
@@ -32,10 +32,15 @@ dependencies = [
 dev = [
     "pytest>=8.3.4",
     "twine>=6.0.1",
+    "hatchling>=1.19.0",
 ]
 
 [project.scripts]
 showmereqs = "showmereqs:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
 
 
 [tool.hatch.build.targets.wheel]
