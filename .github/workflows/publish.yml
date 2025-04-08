@@ -3,7 +3,7 @@ name: Build and Publish
 on:
     push:
         tags:
-            - "v*" # 当推送 v 开头的标签时触发
+            - 'v*' # 当推送 v 开头的标签时触发
 
 jobs:
     build-and-publish:

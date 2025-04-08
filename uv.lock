@@ -1,4 +1,5 @@
 version = 1
+revision = 1
 requires-python = ">=3.8"
 resolution-markers = [
     "python_full_version >= '3.9'",
@@ -628,16 +629,20 @@ wheels = [
 [[package]]
 name = "showmereqs"
 <<<<<<< HEAD
+<<<<<<< HEAD
 version = "0.1.5"
 source = { virtual = "." }
 =======
 version = "0.1.6"
 source = { editable = "." }
 >>>>>>> 25b8043 (bug fix)
+=======
+version = "0.1.6"
+source = { editable = "." }
+>>>>>>> e6b031acfb2ae7fd032ea9ad3675859cbd334aa2
 dependencies = [
     { name = "click" },
     { name = "requests" },
-    { name = "tomlkit" },
 ]
 
 [package.dev-dependencies]
@@ -650,7 +655,6 @@ dev = [
 requires-dist = [
     { name = "click", specifier = ">=8.1.7" },
     { name = "requests", specifier = ">=2.31.0" },
-    { name = "tomlkit" },
 ]
 
 [package.metadata.requires-dev]
@@ -700,6 +704,7 @@ wheels = [
 
 [[package]]
 <<<<<<< HEAD
+<<<<<<< HEAD
 name = "tomlkit"
 version = "0.13.2"
 source = { registry = "https://pypi.org/simple" }
@@ -711,6 +716,8 @@ wheels = [
 [[package]]
 =======
 >>>>>>> e6b031a (bug fix)
+=======
+>>>>>>> e6b031acfb2ae7fd032ea9ad3675859cbd334aa2
 name = "twine"
 version = "6.0.1"
 source = { registry = "https://pypi.org/simple" }
