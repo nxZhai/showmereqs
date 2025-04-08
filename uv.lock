@@ -699,6 +699,7 @@ wheels = [
 ]
 
 [[package]]
+<<<<<<< HEAD
 name = "tomlkit"
 version = "0.13.2"
 source = { registry = "https://pypi.org/simple" }
@@ -708,6 +709,8 @@ wheels = [
 ]
 
 [[package]]
+=======
+>>>>>>> e6b031a (bug fix)
 name = "twine"
 version = "6.0.1"
 source = { registry = "https://pypi.org/simple" }
