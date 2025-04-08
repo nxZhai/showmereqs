@@ -1,14 +1,6 @@
 [project]
 name = "showmereqs"
-<<<<<<< HEAD
-<<<<<<< HEAD
-version = "0.1.5"
-=======
 version = "0.1.6"
->>>>>>> 2639e43 (file not found bug fix)
-=======
-version = "0.1.6"
->>>>>>> e6b031acfb2ae7fd032ea9ad3675859cbd334aa2
 description = "A lightweight tool to generate requirements.txt by analyzing import statements"
 requires-python = ">=3.8"
 authors = [
