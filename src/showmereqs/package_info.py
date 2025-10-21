@@ -6,7 +6,7 @@ import requests
 
 from showmereqs.utils import get_mapping
 
-pypi_api = "https://pypi.org/pypi"
+# pypi_api = "https://pypi.org/pypi"
 
 
 @dataclass
@@ -14,6 +14,7 @@ class PackageInfo:
     """a class to get package info, including package name, version, etc."""
 
     import_name: str
+    pypi_server: str = "https://pypi.org/pypi"
     version: Optional[str] = None
     package_name: Optional[str] = None
 
@@ -23,7 +24,7 @@ class PackageInfo:
         self.package_name = self._get_package_name_from_mapping()
 
         if self.package_name is None:
-            json_info = self._get_pypi_json(self.import_name)
+            json_info = self._get_pypi_json(self.import_name, self.pypi_server)
             if json_info is not None:
                 self.package_name = json_info["info"]["name"]
 
@@ -67,7 +68,7 @@ class PackageInfo:
             return special_mapping[self.import_name]
         return None
 
-    def _get_pypi_json(self, package_name: str):
+    def _get_pypi_json(self, package_name: str, pypi_api: str):
         api = f"{pypi_api}/{package_name}/json"
         try:
             response = requests.get(api, timeout=2)

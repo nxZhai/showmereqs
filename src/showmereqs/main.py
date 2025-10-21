@@ -35,6 +35,13 @@ logo = (
     help="path to output directory, default is current path",
 )
 @click.option(
+    "--pypi-server",
+    "-p",
+    type=str,
+    default="https://pypi.org/pypi",
+    help="the custom PyPI server URL",
+)
+@click.option(
     "--force",
     "-f",
     is_flag=True,
@@ -58,6 +65,7 @@ logo = (
 def main(
     analyse_dir: str,
     outdir: str,
+    pypi_server: str,
     force: bool,
     no_detail: bool,
     verbose: bool,
@@ -75,11 +83,11 @@ def main(
 
     print(f"getting package infos...")
     third_party_package_infos = [
-        PackageInfo(import_name) for import_name in third_party_imports
+        PackageInfo(import_name, pypi_server) for import_name in third_party_imports
     ]
 
     print(f"generating requirements.txt...")
-    generate_reqs(third_party_package_infos, outdir, no_detail)
+    generate_reqs(third_party_package_infos, outdir, pypi_server, no_detail)
 
     print(f"\033[92mgenerate {outdir}\\requirements.txt successfully\033[0m")
 
