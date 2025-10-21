@@ -80,4 +80,4 @@ class PackageInfo:
             else:
                 return None
         except Exception as e:
-            print(f"Warning: Error checking {package_name} on PyPI: {e}")
+            print(f"Warning: Error checking {package_name} on {pypi_api}: {e}")
